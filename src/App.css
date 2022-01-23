@@ -4,16 +4,15 @@ body {
 
 .App {
   text-align: center;
-	margin-top: 10px;
 }
 
 
-.header {
+.navContainer {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: right;
-  
+  margin: 0.1rem 0 0;
 }
 
 .timeBtn {
@@ -30,37 +29,42 @@ body {
 }
 
 .timeBtn:hover {
-	border: 1px solid hsl(240, 10%, 30%);
-	background-color: hsl(240, 10%, 25%);
+	border: 1px solid hsl(240, 10%, 35%);
+	background-color: hsl(240, 10%, 30%);
 	color: #ddd;
 }
 
 .timeBtn:active {
-	border: 1px solid hsl(240, 10%, 40%);
-	background-color: hsl(240, 50%, 35%);
+	border: 1px solid hsl(240, 10%, 45%);
+	background-color: hsl(240, 30%, 35%);
 	color: #fff;
 }
 
 .time {
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin-top: 0.5rem;
-	
-	color: #cc1900;
+	margin: 0.1rem 0 0.2rem;
 }
 
-.dy,
+.dy {
+	font-size: calc(12.5vw + 4vh);
+	color: #ff9900;
+}
+
 .hr {
-	font-size: 11vw
+	font-size: calc(14vw + 4vh);
+	color: #ff2511;
 }
 
 .ms {
-	font-size: 8vw
+	font-size: 8vw;
+	color: #44aa11;
 }
 
 .time span {
-	font-size: 8vw;
+	font-size: 7vw;
+	padding: 0;
 }
 
 .time.ms span {
-	font-size: 6vw;
+	font-size: 5vw;
 }

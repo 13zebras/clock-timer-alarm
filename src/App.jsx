@@ -117,8 +117,16 @@ function App() {
 
   return (
     <div className="App">
-			<div className="header">
-			<button className="timeBtn" onClick={() => handleClick('dy')}>
+			
+			<div className={`time ${timeType}`}>
+				
+				{(timeType === 'hr') && renderHRhtml()}
+				{(timeType === 'dy') && renderDYhtml()}
+				{(timeType === 'ms') && renderMShtml()}
+				
+			</div>
+			<div className="navContainer">
+				<button className="timeBtn" onClick={() => handleClick('dy')}>
 					days
 				</button>
 				<button className="timeBtn" onClick={() => handleClick('hr')}>
@@ -127,14 +135,6 @@ function App() {
 				<button className="timeBtn" onClick={() => handleClick('ms')}>
 					ms
 				</button>
-				
-			</div>
-			<div className={`time ${timeType}`}>
-				
-				{(timeType === 'hr') && renderHRhtml()}
-				{(timeType === 'dy') && renderDYhtml()}
-				{(timeType === 'ms') && renderMShtml()}
-				
 			</div>
     </div>
   )
