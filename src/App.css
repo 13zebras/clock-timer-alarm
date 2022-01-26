@@ -1,5 +1,28 @@
+:root {
+	--p-percent: 60%;
+	--opacity: 0.6;
+	--p-red: hsla(0, 100%, var(--p-percent), var(--opacity));
+	--p-orange: hsla(30, 100%, var(--p-percent), var(--opacity));
+	--p-yellow: hsla(60, 100%, var(--p-percent), var(--opacity));
+	--p-green: hsla(120, 100%, var(--p-percent), var(--opacity));
+	--p-cyan: hsla(180, 100%, var(--p-percent), var(--opacity));
+	--p-blue: hsla(240, 100%, var(--p-percent), var(--opacity));
+	--p-purple: hsla(270, 100%, var(--p-percent), var(--opacity));
+	--p-magenta: hsla(300, 100%, var(--p-percent), var(--opacity));
+	--g1: hsla(270, 30%, 10%, 1);
+	--g2: hsla(330, 60%, 10%, 1);
+	--g3: hsla(240, 45%, 11%, 1);
+	--g4: hsla(270, 35%, 9%, 1);
+	--g5: hsla(300, 45%, 9%, 1);
+}
+
+
 body {
-	background-color: hsl(240, 15%, 5%);
+	background: -webkit-radial-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
+	background-size: 200% 200%;
+	animation: gradient-animation 6s ease infinite;
+	
+	/* background-color: hsl(240, 15%, 5%); */
 }
 
 .App {
@@ -15,6 +38,55 @@ body {
   margin: 0.1rem 0 0;
 }
 
+.clock {
+	/* font-family: Courier, monospace; */
+	font-family: Lato, Roboto, Helvetica, sans-serif;
+	margin: 0.1rem 0;
+	font-size: calc(14vw + 4vh);
+	color: #ba0100;
+	opacity: 0.8;
+}
+
+.clock span {
+	padding: 0 0.8rem;
+}
+
+.clock span.clockPeriod {
+	font-size: calc(7vw + 3vh);
+	padding-left: 1rem;
+}
+
+.time {
+	font-family: Lato, Roboto, Helvetica, sans-serif;
+	margin: 0.8rem 0 1rem;
+}
+
+.dy {
+	font-size: calc(9vw + 3vh);
+	color: #23dd00;
+	opacity: 0.6;
+}
+
+.hr {
+	font-size: calc(10vw + 3vh);
+	color: #12dd11;
+	opacity: 0.6;
+}
+
+.ms {
+	font-size: 7vw;
+	color: #227722;
+}
+
+.time span {
+	font-size: 7vw;
+	padding: 0;
+}
+
+.time.ms span {
+	font-size: 5vw;
+}
+
 .timeBtn {
 	margin: 0 10px;
 	/* width: 85px;
@@ -23,8 +95,8 @@ body {
 	font-size: 10px;
 	padding: 1px 13px;
 	border-radius: 2px;
-	border: 1px solid hsl(240, 10%, 25%);
-	background-color: hsl(240, 10%, 20%);
+	border: 1px solid hsl(240, 10%, 20%);
+	background-color: hsl(240, 10%, 15%);
 	color: #aaa;
 }
 
@@ -40,31 +112,54 @@ body {
 	color: #fff;
 }
 
-.time {
-	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin: 0.1rem 0 0.2rem;
+.mint-button {
+  background: -webkit-linear-gradient(left, var(--p-red), var(--p-orange), var(--p-yellow), var(--p-green), var(--p-cyan), var(--p-blue), var(--p-purple), var(--p-magenta));
+  background-size: 200% 200%;
+  animation: gradient-animation 8s ease infinite;
+  color: white;
 }
 
-.dy {
-	font-size: calc(12.5vw + 4vh);
-	color: #ff9900;
-}
+.disabled-button {
+	background: -webkit-linear-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4));
+	background-size: 200% 200%;
+	animation: gradient-animation 6s ease infinite;
+	color: #eeeef3;
+	font-size: 22px;
+	border: 1px solid #445;
+	font-style: italic;
+  }
 
-.hr {
-	font-size: calc(14vw + 4vh);
-	color: #ff2511;
+	/* KeyFrames */
+@-webkit-keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
-.ms {
-	font-size: 8vw;
-	color: #44aa11;
+@-moz-keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
-.time span {
-	font-size: 7vw;
-	padding: 0;
-}
-
-.time.ms span {
-	font-size: 5vw;
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

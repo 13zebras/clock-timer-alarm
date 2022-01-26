@@ -9,7 +9,10 @@ console.log(startDate);
 
 function App() {
   
-	const [theTime, setTheTime] = useState();
+	const [clockHours, setClockHours] = useState();
+	const [clockMins, setClockMins] = useState();
+	const [clockSecs, setClockSecs] = useState();
+	const [clockPeriod, setClockPeriod] = useState();
 	const [timeType, setTimeType] = useState('dy');
 	const [totalDaysS, setTotalDaysS] = useState();
 	const [totalHoursND, setTotalHoursND] = useState();
@@ -21,7 +24,7 @@ function App() {
   // const [count, setCount] = useState(0);
 	
 	function updateTime() {
-		// setCount(count + 1);
+		
 		// console.log('Count=' + count);
 		let currentDate = Date.now();
 		
@@ -29,7 +32,7 @@ function App() {
 		let elapsedTime = currentDate - startDate;
 		// console.log('elapsedTime=' + elapsedTime);
 		let totDays = Math.floor(elapsedTime / (24 * 3600 * 1000));
-		// let decDays = Math.round(elapsedTime * 100 / (24 * 3600)) / 100000;
+		
 		let totHoursNoDays = Math.floor(elapsedTime / (3600 * 1000));
 		let mHours = elapsedTime - (totDays * 24 * 3600 * 1000)
 		let totHours = Math.floor(mHours / (3600 * 1000));
@@ -56,39 +59,56 @@ function App() {
 		setTotalSeconds(totSecs);
 		setTotalMilliseconds(totMilliSecs);
 		
-		// console.log(totMilliSecs);
-		// console.log('totSecs=' + totSecs);
-		
-		// let tTime;
-		// console.log(timeType);
-
-		if (timeType === 'hr') {
-			let totHoursNoDays = Math.floor(elapsedTime / (3600 * 1000));
-			//tTime = totHoursNoDays + 'h ' + totMins + 'm ' + totSecs + 's';
-			// setTotHoursND(totHoursNoDays);
-			// setTotMinutes(totMins);
-			// setTotSeconds(totSecs);
-		} else  if (timeType === 'ms') {
-			let totMilliSecs = mSecs - (totSecs * 1000);
-			totMilliSecs = (totMilliSecs + "00").slice(0, 3);
-			tTime = totDays + 'd ' + totHours + 'h ' + totMins + 'm ' + totSecs + '.' + totMilliSecs + 's';
-		} else  {
-			tTime = totDays + 'd ' + totHours + 'h ' + totMins + 'm ' + totSecs + 's';
-		} 
-		
-		// console.log('tTime=' + tTime);
-		setTheTime(tTime);
 	}
 
+	function updateClock() {
+		let date = new Date();
+		let hr = date.getHours();
+		let min = date.getMinutes();
+		let sec = date.getSeconds();
+		let period = "AM";
+
+		if (hr === 0) {
+			hr = 12;
+		}
+
+		if (hr > 12) {
+			hr = hr - 12;
+			period = "PM";
+		}
+
+		if (hr === 12) {
+			period = "PM";
+		}
+		
+		hr = ("0" + hr).slice(-2);
+		min = ("0" + min).slice(-2);
+		sec = ("0" + sec).slice(-2);
+		
+		setClockHours(hr);
+		setClockMins(min);
+		setClockSecs(sec);
+		setClockPeriod(period);
+		console.log(`${hr}:${min}:${sec}${period}`);
+	}
 	
 	
 	useEffect(() => {
     const timer = setInterval(() => {
-      updateTime();
+      updateClock();
+			updateTime();
     }, 500);
                // clearing interval
     return () => clearInterval(timer);
   });
+
+	//{clockHours}:{clockMins}:{clockSecs}
+	const renderClock = () => (
+		<div>
+			{clockHours}<span>:</span>{clockMins}<span>:</span>{clockSecs}<span className="clockPeriod">{clockPeriod}</span>
+			
+		</div>
+	)
 
 	const renderHRhtml = () => (
     <div>
@@ -117,7 +137,7 @@ function App() {
 
   return (
     <div className="App">
-			
+			<div className='clock'>{renderClock()}</div>
 			<div className={`time ${timeType}`}>
 				
 				{(timeType === 'hr') && renderHRhtml()}
@@ -126,6 +146,7 @@ function App() {
 				
 			</div>
 			<div className="navContainer">
+				
 				<button className="timeBtn" onClick={() => handleClick('dy')}>
 					days
 				</button>
