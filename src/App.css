@@ -33,15 +33,16 @@ body {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  justify-content: right;
+  justify-content: center;
   margin: 0.1rem 0 0;
 }
 
 .clock {
 	/* font-family: Courier, monospace; */
+	display: inline-flex;
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin: 0;
-	font-size: calc(14vw + 4vh);
+	margin: 0 1rem;
+	font-size: calc(8vw + 2vh);
 	background: -webkit-linear-gradient(left, var(--p-red), var(--p-red), var(--p-orange), var(--p-yellow), var(--p-green), var(--p-cyan), var(--p-blue), var(--p-purple), var(--p-magenta), var(--p-magenta));
 	background-size: 200% 200%;
 	animation: gradient-animation 10s ease infinite;
@@ -51,7 +52,7 @@ body {
 }
 
 .clock.ns {
-	font-size: calc(21vw + 3vh);
+	font-size: calc(11vw + 3vh);
 }
 
 .clock span {
@@ -59,21 +60,22 @@ body {
 }
 
 .clock span.clockPeriod {
-	font-size: calc(7vw + 3vh);
+	font-size: calc(6vw + 2vh);
 	padding-left: 1.2rem;
 }
 
 .time {
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin: 0.7rem 0 .5rem;
+	margin: 0.7rem 1rem .5rem;
+	display: inline-flex;
 }
 
 .time.dy {
-	font-size: calc(9vw + 3vh);
+	font-size: calc(4vw + 1vh);
 }
 
 .time.ns {
-	font-size: calc(10vw + 3vh);
+	font-size: calc(4.5vw + 1vh);
 }
 
 .time.dy,
@@ -87,7 +89,7 @@ body {
 }
 
 .time.hr {
-	font-size: calc(10vw + 3vh);
+	font-size: calc(4vw + 1vh);
 	background: -webkit-linear-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
 	background-size: 200% 200%;
 	animation: gradient-animation 20s ease infinite;
@@ -97,17 +99,17 @@ body {
 }
 
 .time.ms {
-	font-size: 7vw;
+	font-size: 4vw;
 	color: #228811;
 }
 
 .time span {
-	font-size: 7vw;
+	font-size: 2.5vw;
 	padding: 0;
 }
 
 .time.ms span {
-	font-size: 5vw;
+	font-size: 2vw;
 }
 
 .timeBtn {
