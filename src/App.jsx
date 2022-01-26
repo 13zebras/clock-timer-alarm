@@ -110,6 +110,18 @@ function App() {
 		</div>
 	)
 
+	const renderClockNS = () => (
+		<div>
+			{clockHours}<span>:</span>{clockMins}<span className="clockPeriod">{clockPeriod}</span>
+		</div>
+	)
+
+	const renderNShtml = () => (
+    <div>
+			{totalDaysS}<span>d</span> {totalHoursS}<span>h</span> {totalMinutes}<span>m</span>
+		</div>
+  );
+
 	const renderHRhtml = () => (
     <div>
 			{totalHoursND}<span>h</span> {totalMinutes}<span>m</span> {totalSeconds}<span>s</span>
@@ -137,16 +149,21 @@ function App() {
 
   return (
     <div className="App">
-			<div className='clock'>{renderClock()}</div>
+			<div className={`clock ${timeType}`}>
+				{(timeType === 'ns') && renderClockNS()}
+				{(timeType !== 'ns') && renderClock()}
+			</div>
 			<div className={`time ${timeType}`}>
-				
+				{(timeType === 'ns') && renderNShtml()}
 				{(timeType === 'hr') && renderHRhtml()}
 				{(timeType === 'dy') && renderDYhtml()}
 				{(timeType === 'ms') && renderMShtml()}
 				
 			</div>
 			<div className="navContainer">
-				
+				<button className="timeBtn" onClick={() => handleClick('ns')}>
+					nosec
+				</button>
 				<button className="timeBtn" onClick={() => handleClick('dy')}>
 					days
 				</button>

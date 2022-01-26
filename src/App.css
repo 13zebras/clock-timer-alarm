@@ -1,32 +1,31 @@
 :root {
-	--p-percent: 60%;
-	--opacity: 0.6;
+	--p-percent: 40%;
+	--opacity: 0.8;
 	--p-red: hsla(0, 100%, var(--p-percent), var(--opacity));
 	--p-orange: hsla(30, 100%, var(--p-percent), var(--opacity));
 	--p-yellow: hsla(60, 100%, var(--p-percent), var(--opacity));
 	--p-green: hsla(120, 100%, var(--p-percent), var(--opacity));
 	--p-cyan: hsla(180, 100%, var(--p-percent), var(--opacity));
-	--p-blue: hsla(240, 100%, var(--p-percent), var(--opacity));
+	--p-blue: hsla(220, 100%, var(--p-percent), var(--opacity));
 	--p-purple: hsla(270, 100%, var(--p-percent), var(--opacity));
-	--p-magenta: hsla(300, 100%, var(--p-percent), var(--opacity));
-	--g1: hsla(270, 30%, 10%, 1);
-	--g2: hsla(330, 60%, 10%, 1);
-	--g3: hsla(240, 45%, 11%, 1);
-	--g4: hsla(270, 35%, 9%, 1);
-	--g5: hsla(300, 45%, 9%, 1);
+	--p-magenta: hsla(310, 100%, var(--p-percent), var(--opacity));
+	--opacity-2: 0.8;
+	--g1: hsla(100, 100%, 25%, var(--opacity-2));
+	--g2: hsla(270, 100%, 45%, var(--opacity-2));
+	--g3: hsla(140, 100%, 30%, var(--opacity-2));
+	--g4: hsla(220, 100%, 40%, var(--opacity-2));
+	--g5: hsla(180, 100%, 35%, var(--opacity-2));
 }
 
 
 body {
-	background: -webkit-radial-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
-	background-size: 200% 200%;
-	animation: gradient-animation 6s ease infinite;
-	
-	/* background-color: hsl(240, 15%, 5%); */
+	background-color: hsl(240, 15%, 5%);
 }
 
 .App {
   text-align: center;
+	margin: 0;
+	padding: 0;
 }
 
 
@@ -41,41 +40,65 @@ body {
 .clock {
 	/* font-family: Courier, monospace; */
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin: 0.1rem 0;
+	margin: 0;
 	font-size: calc(14vw + 4vh);
-	color: #ba0100;
-	opacity: 0.8;
+	background: -webkit-linear-gradient(left, var(--p-red), var(--p-red), var(--p-orange), var(--p-yellow), var(--p-green), var(--p-cyan), var(--p-blue), var(--p-purple), var(--p-magenta), var(--p-magenta));
+	background-size: 200% 200%;
+	animation: gradient-animation 10s ease infinite;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.clock.ns {
+	font-size: calc(21vw + 3vh);
 }
 
 .clock span {
-	padding: 0 0.8rem;
+	padding: 0 0.6rem;
 }
 
 .clock span.clockPeriod {
 	font-size: calc(7vw + 3vh);
-	padding-left: 1rem;
+	padding-left: 1.2rem;
 }
 
 .time {
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin: 0.8rem 0 1rem;
+	margin: 0.7rem 0 .5rem;
 }
 
-.dy {
+.time.dy {
 	font-size: calc(9vw + 3vh);
-	color: #23dd00;
-	opacity: 0.6;
 }
 
-.hr {
+.time.ns {
 	font-size: calc(10vw + 3vh);
-	color: #12dd11;
-	opacity: 0.6;
 }
 
-.ms {
+.time.dy,
+.time.ns {
+	background: -webkit-linear-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
+	background-size: 200% 200%;
+	animation: gradient-animation 20s ease infinite;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.time.hr {
+	font-size: calc(10vw + 3vh);
+	background: -webkit-linear-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
+	background-size: 200% 200%;
+	animation: gradient-animation 20s ease infinite;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.time.ms {
 	font-size: 7vw;
-	color: #227722;
+	color: #228811;
 }
 
 .time span {
@@ -92,42 +115,46 @@ body {
 	/* width: 85px;
 	height: 28px; */
 	display: inline;
-	font-size: 10px;
+	font-size: 8px;
 	padding: 1px 13px;
 	border-radius: 2px;
-	border: 1px solid hsl(240, 10%, 20%);
-	background-color: hsl(240, 10%, 15%);
+	border: 1px solid hsl(260, 10%, 20%);
+	background-color: hsl(260, 10%, 15%);
 	color: #aaa;
 }
 
 .timeBtn:hover {
-	border: 1px solid hsl(240, 10%, 35%);
-	background-color: hsl(240, 10%, 30%);
+	border: 1px solid hsl(260, 20%, 35%);
+	background-color: hsl(260, 15%, 30%);
 	color: #ddd;
 }
 
 .timeBtn:active {
-	border: 1px solid hsl(240, 10%, 45%);
-	background-color: hsl(240, 30%, 35%);
+	border: 1px solid hsl(260, 40%, 45%);
+	background-color: hsl(260, 40%, 35%);
 	color: #fff;
 }
 
-.mint-button {
+.animation1 {
   background: -webkit-linear-gradient(left, var(--p-red), var(--p-orange), var(--p-yellow), var(--p-green), var(--p-cyan), var(--p-blue), var(--p-purple), var(--p-magenta));
   background-size: 200% 200%;
   animation: gradient-animation 8s ease infinite;
-  color: white;
+	background: -webkit-linear-gradient(left, #fc1937 30%, #8241eb 70%);
 }
 
-.disabled-button {
-	background: -webkit-linear-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4));
+.animation2 {
+	background: -webkit-radial-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
 	background-size: 200% 200%;
 	animation: gradient-animation 6s ease infinite;
-	color: #eeeef3;
-	font-size: 22px;
-	border: 1px solid #445;
-	font-style: italic;
   }
+
+	.gradient-text {
+		background: -webkit-linear-gradient(left, #fc1937 30%, #8241eb 70%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	
 
 	/* KeyFrames */
 @-webkit-keyframes gradient-animation {
