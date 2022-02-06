@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-const startDate = new Date(2022, 0, 9, 19, 0, 0).getTime();
+const startDate = new Date(2022, 1, 5, 8, 30, 0).getTime();
 //const startDate = theStartDate.getTime();
 console.log(startDate);
-// 2022-01-09 19:00:00
+// 2022-02-05 08:30:00 -- current start date
+// 2022-01-09 19:00:00 -- previous start date
 
 
 function App() {
