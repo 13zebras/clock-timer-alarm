@@ -1,20 +1,25 @@
 :root {
-	--p-percent: 40%;
-	--opacity: 0.8;
-	--p-red: hsla(0, 100%, var(--p-percent), var(--opacity));
-	--p-orange: hsla(30, 100%, var(--p-percent), var(--opacity));
-	--p-yellow: hsla(60, 100%, var(--p-percent), var(--opacity));
-	--p-green: hsla(120, 100%, var(--p-percent), var(--opacity));
-	--p-cyan: hsla(180, 100%, var(--p-percent), var(--opacity));
-	--p-blue: hsla(220, 100%, var(--p-percent), var(--opacity));
-	--p-purple: hsla(270, 100%, var(--p-percent), var(--opacity));
-	--p-magenta: hsla(310, 100%, var(--p-percent), var(--opacity));
-	--opacity-2: 0.8;
-	--g1: hsla(100, 100%, 25%, var(--opacity-2));
-	--g2: hsla(270, 100%, 45%, var(--opacity-2));
-	--g3: hsla(140, 100%, 30%, var(--opacity-2));
-	--g4: hsla(220, 100%, 40%, var(--opacity-2));
-	--g5: hsla(180, 100%, 35%, var(--opacity-2));
+	--percent: 40%;
+	--p-percent: 50%;
+	--pp-percent: 65%;
+	--opacity-1: 1;
+	--opacity-9: 0.9;
+	--opacity-9: 0.8;
+	--red: hsla(0, 100%, var(--p-percent), var(--opacity-9));
+	--orange: hsla(30, 100%, var(--p-percent), var(--opacity-9));
+	--yellow: hsla(60, 100%, var(--p-percent), var(--opacity-9));
+	--green: hsla(120, 100%, var(--p-percent), var(--opacity-9));
+	--cyan: hsla(180, 100%, var(--p-percent), var(--opacity-9));
+	--blue: hsla(220, 100%, var(--pp-percent), var(--opacity-1));
+	--purple: hsla(280, 100%, var(--pp-percent), var(--opacity-1));
+	--magenta: hsla(310, 100%, var(--p-percent), var(--opacity-9));
+	--red340: hsla(340, 100%, var(--p-percent), var(--opacity-9));
+
+	--g1: hsla(200, 100%, 40%, var(--opacity-1));
+	--g2: hsla(220, 100%, 45%, var(--opacity-1));
+	--g3: hsla(240, 100%, 70%, var(--opacity-1));
+	--g4: hsla(260, 100%, 65%, var(--opacity-1));
+	--g5: hsla(280, 100%, 45%, var(--opacity-1));
 }
 
 
@@ -26,50 +31,55 @@ body {
   text-align: center;
 	margin: 0;
 	padding: 0;
-}
-
-
-.navContainer {
-  display: inline-flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0.1rem 0 0;
+
 }
 
 .clock {
 	/* font-family: Courier, monospace; */
-	display: inline-flex;
+	display: flex;
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin: 0 1rem;
-	font-size: calc(8vw + 2vh);
-	background: -webkit-linear-gradient(left, var(--p-red), var(--p-red), var(--p-orange), var(--p-yellow), var(--p-green), var(--p-cyan), var(--p-blue), var(--p-purple), var(--p-magenta), var(--p-magenta));
-	background-size: 200% 200%;
-	animation: gradient-animation 10s ease infinite;
+	margin-top: 0rem;
+	background: -webkit-linear-gradient(left, var(--red340), var(--red), var(--orange), var(--yellow), var(--green), var(--cyan), var(--purple), var(--magenta), var(--red340));
+	background-size: 400% 200%;
+	animation: gradient-animation 30s ease infinite;
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
-.clock.ns {
-	font-size: calc(11vw + 3vh);
+.clock {
+	font-size: clamp(5vw, calc(15vw + 5vh), 12rem);
+}
+
+.time {
+	font-size: clamp(3vw, calc(6vw + 2vh), 4rem);
 }
 
 .clock span {
-	padding: 0 0.6rem;
+	padding: 0 0.4rem;
 }
 
 .clock span.clockPeriod {
-	font-size: calc(6vw + 2vh);
-	padding-left: 1.2rem;
+	font-size: calc(5vw + 1vh);
+	padding-left: 0.8rem;
+}
+
+.time span {
+	font-size: calc(3vw + 1vh);
+	padding: 0;
 }
 
 .time {
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin: 0.7rem 1rem .5rem;
-	display: inline-flex;
+	margin-top: 1.5rem;
+	display: flex;
+	opacity: 1;
 }
-
+/* 
 .time.dy {
 	font-size: calc(4vw + 1vh);
 }
@@ -78,19 +88,12 @@ body {
 	font-size: calc(4.5vw + 1vh);
 }
 
-.time.dy,
-.time.ns {
-	background: -webkit-linear-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
-	background-size: 200% 200%;
-	animation: gradient-animation 20s ease infinite;
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
 .time.hr {
 	font-size: calc(4vw + 1vh);
-	background: -webkit-linear-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
+} */
+
+.time {
+	background: -webkit-linear-gradient(left, var(--g1) 20%, var(--g2) 35%, var(--g3) 50%, var(--g4) 65%, var(--g5) 80%);
 	background-size: 200% 200%;
 	animation: gradient-animation 20s ease infinite;
 	background-clip: text;
@@ -98,43 +101,30 @@ body {
 	-webkit-text-fill-color: transparent;
 }
 
-.time.ms {
-	font-size: 4vw;
-	color: #228811;
+.navContainer {
+	margin-top: 2.3rem;
 }
 
-.time span {
-	font-size: 2.5vw;
-	padding: 0;
+.navContainer form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.time.ms span {
-	font-size: 2vw;
-}
-
-.timeBtn {
-	margin: 0 10px;
-	/* width: 85px;
-	height: 28px; */
+.navContainer input {
 	display: inline;
-	font-size: 8px;
-	padding: 1px 13px;
-	border-radius: 2px;
-	border: 1px solid hsl(260, 10%, 20%);
-	background-color: hsl(260, 10%, 15%);
-	color: #aaa;
+  flex-direction: column;
+	margin: 0 0 0 0.5rem;
+	opacity: 0.6;
 }
 
-.timeBtn:hover {
-	border: 1px solid hsl(260, 20%, 35%);
-	background-color: hsl(260, 15%, 30%);
-	color: #ddd;
-}
 
-.timeBtn:active {
-	border: 1px solid hsl(260, 40%, 45%);
-	background-color: hsl(260, 40%, 35%);
-	color: #fff;
+.navContainer label {
+	color: #a8a9ad;
+	display: inline;
+	margin: 0 0.5rem 0 4px;
+	font-size: 0.7rem;
 }
 
 .animation1 {
@@ -191,4 +181,32 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+
+
+
+.timeBtn {
+	margin: 0 10px;
+	/* width: 85px;
+	height: 28px; */
+	display: inline;
+	font-size: 8px;
+	padding: 1px 13px;
+	border-radius: 2px;
+	border: 1px solid hsl(260, 10%, 20%);
+	background-color: hsl(260, 10%, 15%);
+	color: #aaa;
+}
+
+.timeBtn:hover {
+	border: 1px solid hsl(260, 20%, 35%);
+	background-color: hsl(260, 15%, 30%);
+	color: #ddd;
+}
+
+.timeBtn:active {
+	border: 1px solid hsl(260, 40%, 45%);
+	background-color: hsl(260, 40%, 35%);
+	color: #fff;
 }

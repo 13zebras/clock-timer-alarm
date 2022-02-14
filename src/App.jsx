@@ -141,11 +141,15 @@ function App() {
 		</div>
   );
 
-
-	const handleClick = (type) => {
-		setTimeType(type); // state
-		console.log(type);
+	
+	const handleChange = (e) => {
+		setTimeType(e.target.value);
 	}
+
+	// const handleClick = (type) => {
+	// 	setTimeType(type); // state
+	// 	console.log(type);
+	// }
 		
 
   return (
@@ -162,21 +166,45 @@ function App() {
 				
 			</div>
 			<div className="navContainer">
-				<button className="timeBtn" onClick={() => handleClick('ns')}>
-					nosec
-				</button>
-				<button className="timeBtn" onClick={() => handleClick('dy')}>
-					days
-				</button>
-				<button className="timeBtn" onClick={() => handleClick('hr')}>
-					hours
-				</button>
-				<button className="timeBtn" onClick={() => handleClick('ms')}>
-					ms
-				</button>
+				<form>
+					
+						<input type="radio" value="ns" id="ns"
+							onChange={handleChange} name="display" />
+						<label for="ns">no secs</label>
+				
+						<input type="radio" value="dy" id="dy"
+							onChange={handleChange} name="display"/>
+						<label for="dy">days</label>
+				
+						<input type="radio" value="hr" id="hr"
+							onChange={handleChange} name="display"/>
+						<label for="hr">hours</label>
+					
+						<input type="radio" value="ms" id="ms"
+							onChange={handleChange} name="display"/>
+						<label for="ms">ms</label>
+					
+				</form>
 			</div>
     </div>
   )
 }
 
 export default App
+
+
+
+// <div className="navContainer">
+// 				<button className="timeBtn" onClick={() => handleClick('ns')}>
+// 					nosec
+// 				</button>
+// 				<button className="timeBtn" onClick={() => handleClick('dy')}>
+// 					days
+// 				</button>
+// 				<button className="timeBtn" onClick={() => handleClick('hr')}>
+// 					hours
+// 				</button>
+// 				<button className="timeBtn" onClick={() => handleClick('ms')}>
+// 					ms
+// 				</button>
+// 			</div>
