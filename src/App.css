@@ -55,8 +55,12 @@ body {
 	font-size: clamp(5vw, calc(15vw + 5vh), 12rem);
 }
 
+.clock.ns {
+	font-size: clamp(6vw, calc(16vw + 5vh), 12rem);
+}
+
 .time {
-	font-size: clamp(3vw, calc(6vw + 2vh), 4rem);
+	font-size: clamp(3vw, calc(6.5vw + 2vh), 4rem);
 }
 
 .clock span {
@@ -79,13 +83,14 @@ body {
 	display: flex;
 	opacity: 1;
 }
+
+.time.ns {
+	font-size: clamp(3.5vw, calc(7vw + 2vh), 4rem);
+}
+
 /* 
 .time.dy {
 	font-size: calc(4vw + 1vh);
-}
-
-.time.ns {
-	font-size: calc(4.5vw + 1vh);
 }
 
 .time.hr {
@@ -127,26 +132,6 @@ body {
 	font-size: 0.7rem;
 }
 
-.animation1 {
-  background: -webkit-linear-gradient(left, var(--p-red), var(--p-orange), var(--p-yellow), var(--p-green), var(--p-cyan), var(--p-blue), var(--p-purple), var(--p-magenta));
-  background-size: 200% 200%;
-  animation: gradient-animation 8s ease infinite;
-	background: -webkit-linear-gradient(left, #fc1937 30%, #8241eb 70%);
-}
-
-.animation2 {
-	background: -webkit-radial-gradient(left, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5));
-	background-size: 200% 200%;
-	animation: gradient-animation 6s ease infinite;
-  }
-
-	.gradient-text {
-		background: -webkit-linear-gradient(left, #fc1937 30%, #8241eb 70%);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-	
 
 	/* KeyFrames */
 @-webkit-keyframes gradient-animation {
