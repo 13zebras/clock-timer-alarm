@@ -52,50 +52,41 @@ body {
 }
 
 .clock {
-	font-size: clamp(5vw, calc(15vw + 5vh), 12rem);
+	font-size: clamp(5vw, calc(15vw + 3vh), 15rem);
 }
 
 .clock.ns {
-	font-size: clamp(6vw, calc(16vw + 5vh), 12rem);
+	font-size: clamp(6vw, calc(20vw + 5vh), 16rem);
 }
 
 .time {
-	font-size: clamp(3vw, calc(6.5vw + 2vh), 4rem);
+	font-size: clamp(4vw, calc(8vw + 2vh), 6rem);
 }
 
-.clock span {
-	padding: 0 0.4rem;
+.time.ns {
+	font-size: clamp(4.5vw, calc(9vw + 2vh), 6rem);
 }
 
 .clock span.clockPeriod {
-	font-size: calc(5vw + 1vh);
+	font-size: calc(6vw + 1vh);
 	padding-left: 0.8rem;
 }
 
 .time span {
-	font-size: calc(3vw + 1vh);
+	font-size: calc(5vw + 1vh);
 	padding: 0;
 }
 
 .time {
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin-top: 1.5rem;
+	margin-top: 1.2em;
 	display: flex;
 	opacity: 1;
 }
 
-.time.ns {
-	font-size: clamp(3.5vw, calc(7vw + 2vh), 4rem);
+.clock span {
+	padding: 0 0.4rem;
 }
-
-/* 
-.time.dy {
-	font-size: calc(4vw + 1vh);
-}
-
-.time.hr {
-	font-size: calc(4vw + 1vh);
-} */
 
 .time {
 	background: -webkit-linear-gradient(left, var(--g1) 20%, var(--g2) 35%, var(--g3) 50%, var(--g4) 65%, var(--g5) 80%);
@@ -107,7 +98,7 @@ body {
 }
 
 .navContainer {
-	margin-top: 2.3rem;
+	margin-top: calc(2em + 10vw);
 }
 
 .navContainer form {
@@ -129,7 +120,7 @@ body {
 	color: #a8a9ad;
 	display: inline;
 	margin: 0 0.5rem 0 4px;
-	font-size: 0.7rem;
+	font-size: clamp(0.8rem, 1.8vw, 1.5rem);
 }
 
 
