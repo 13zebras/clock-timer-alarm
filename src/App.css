@@ -15,11 +15,11 @@
 	--magenta: hsla(310, 100%, var(--p-percent), var(--opacity-9));
 	--red340: hsla(340, 100%, var(--p-percent), var(--opacity-9));
 
-	--g1: hsla(200, 100%, 40%, var(--opacity-1));
-	--g2: hsla(220, 100%, 45%, var(--opacity-1));
-	--g3: hsla(240, 100%, 70%, var(--opacity-1));
-	--g4: hsla(260, 100%, 65%, var(--opacity-1));
-	--g5: hsla(280, 100%, 45%, var(--opacity-1));
+	--g1: hsla(200, 100%, 45%, var(--opacity-1));
+	--g2: hsla(220, 100%, 50%, var(--opacity-1));
+	--g3: hsla(240, 100%, 72%, var(--opacity-1));
+	--g4: hsla(260, 100%, 68%, var(--opacity-1));
+	--g5: hsla(280, 100%, 50%, var(--opacity-1));
 }
 
 
@@ -52,11 +52,11 @@ body {
 }
 
 .clock {
-	font-size: clamp(5vw, calc(15vw + 3vh), 15rem);
+	font-size: clamp(4vw, calc(14vw + 6vh), 15rem);
 }
 
 .clock.ns {
-	font-size: clamp(6vw, calc(20vw + 5vh), 16rem);
+	font-size: clamp(6vw, calc(20vw + 8vh), 16rem);
 }
 
 .time {
@@ -64,7 +64,7 @@ body {
 }
 
 .time.ns {
-	font-size: clamp(4.5vw, calc(9vw + 2vh), 6rem);
+	font-size: clamp(5vw, calc(9.5vw + 2vh), 6rem);
 }
 
 .clock span.clockPeriod {
@@ -90,7 +90,7 @@ body {
 
 .time {
 	background: -webkit-linear-gradient(left, var(--g1) 20%, var(--g2) 35%, var(--g3) 50%, var(--g4) 65%, var(--g5) 80%);
-	background-size: 200% 200%;
+	background-size: 300% 200%;
 	animation: gradient-animation 20s ease infinite;
 	background-clip: text;
 	-webkit-background-clip: text;
@@ -98,7 +98,7 @@ body {
 }
 
 .navContainer {
-	margin-top: calc(2em + 10vw);
+	margin-top: calc(2em + 4vw);
 }
 
 .navContainer form {
@@ -112,7 +112,7 @@ body {
 	display: inline;
   flex-direction: column;
 	margin: 0 0 0 0.5rem;
-	opacity: 0.6;
+	opacity: 0.7;
 }
 
 
@@ -120,7 +120,7 @@ body {
 	color: #a8a9ad;
 	display: inline;
 	margin: 0 0.5rem 0 4px;
-	font-size: clamp(0.8rem, 1.8vw, 1.5rem);
+	font-size: clamp(0.6rem, 2.3vw, 2rem);
 }
 
 
