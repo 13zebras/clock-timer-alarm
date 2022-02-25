@@ -13,7 +13,8 @@ function App() {
 	const [clockHours, setClockHours] = useState();
 	const [clockMins, setClockMins] = useState();
 	const [clockSecs, setClockSecs] = useState();
-	const [clockPeriod, setClockPeriod] = useState();
+	const [clockPeriod, setClockPeriod] = useState('AM');
+	const [twentyfour, setTwentyfour] = useState('24');
 	const [timeType, setTimeType] = useState('dy');
 	const [totalDaysS, setTotalDaysS] = useState();
 	const [totalHoursND, setTotalHoursND] = useState();
@@ -67,21 +68,22 @@ function App() {
 		let hr = date.getHours();
 		let min = date.getMinutes();
 		let sec = date.getSeconds();
-		let period = "AM";
 
-		if (hr === 0) {
-			hr = 12;
+		if ( twentyfour === '12' ) {
+			if (hr === 0) {
+				hr = 12;
+			}
+
+			if (hr > 12) {
+				hr = hr - 12;
+				setClockPeriod('PM');
+			}
+
+			if (hr === 12) {
+				setClockPeriod('PM');
+			}
 		}
 
-		if (hr > 12) {
-			hr = hr - 12;
-			period = "PM";
-		}
-
-		if (hr === 12) {
-			period = "PM";
-		}
-		
 		hr = ("0" + hr).slice(-2);
 		min = ("0" + min).slice(-2);
 		sec = ("0" + sec).slice(-2);
@@ -89,8 +91,7 @@ function App() {
 		setClockHours(hr);
 		setClockMins(min);
 		setClockSecs(sec);
-		setClockPeriod(period);
-		console.log(`${hr}:${min}:${sec}${period}`);
+		//console.log(`${hr}:${min}:${sec}${period}`);
 	}
 	
 	
@@ -111,9 +112,21 @@ function App() {
 		</div>
 	)
 
+	const renderClock24 = () => (
+		<div>
+			{clockHours}<span>:</span>{clockMins}<span>:</span>{clockSecs}
+		</div>
+	)
+
 	const renderClockNS = () => (
 		<div>
 			{clockHours}<span>:</span>{clockMins}<span className="clockPeriod">{clockPeriod}</span>
+		</div>
+	)
+
+	const renderClockNS24 = () => (
+		<div>
+			{clockHours}<span>:</span>{clockMins}
 		</div>
 	)
 
@@ -141,9 +154,14 @@ function App() {
 		</div>
   );
 
-	
 	const handleChange = (e) => {
 		setTimeType(e.target.value);
+		//console.log(timeType);
+	}
+
+	const handleChange24 = (e) => {
+		setTwentyfour(e.target.value);
+		//console.log(twentyfour);
 	}
 
 	// const handleClick = (type) => {
@@ -154,9 +172,11 @@ function App() {
 
   return (
     <div className="App">
-			<div className={`clock ${timeType}`}>
-				{(timeType === 'ns') && renderClockNS()}
-				{(timeType !== 'ns') && renderClock()}
+			<div className={`clock ${timeType} hours${twentyfour}`}>
+				{(timeType === 'ns' && twentyfour === '12' ) && renderClockNS()}
+				{(timeType !== 'ns' && twentyfour === '12' ) && renderClock()}
+				{(timeType === 'ns' && twentyfour === '24') && renderClockNS24()}
+				{(timeType !== 'ns' && twentyfour === '24' ) && renderClock24()}
 			</div>
 			<div className={`time ${timeType}`}>
 				{(timeType === 'ns') && renderNShtml()}
@@ -165,25 +185,42 @@ function App() {
 				{(timeType === 'ms') && renderMShtml()}
 				
 			</div>
-			<div className="navContainer">
+			<div className="settings">
 				<form>
-					
-						<input type="radio" value="ns" id="ns"
-							onChange={handleChange} name="display" />
-						<label for="ns">no secs</label>
-				
-						<input type="radio" value="dy" id="dy"
-							onChange={handleChange} name="display"/>
-						<label for="dy">days</label>
-				
-						<input type="radio" value="hr" id="hr"
-							onChange={handleChange} name="display"/>
-						<label for="hr">hours</label>
-					
-						<input type="radio" value="ms" id="ms"
-							onChange={handleChange} name="display"/>
-						<label for="ms">ms</label>
-					
+					<ul className="time-type">
+						<li>
+							<input type="radio" value="ns" id="ns"
+								onChange={handleChange} name="display" />
+							<label for="ns">no secs</label>
+						</li>
+						<li>
+							<input type="radio" value="dy" id="dy"
+								onChange={handleChange} name="display"/>
+							<label for="dy">days</label>
+						</li>						
+						<li>
+							<input type="radio" value="hr" id="hr"
+								onChange={handleChange} name="display"/>
+							<label for="hr">hours</label>
+						</li>
+						<li>
+							<input type="radio" value="ms" id="ms"
+								onChange={handleChange} name="display"/>
+							<label for="ms">ms</label>
+						</li>
+					</ul>
+					<ul className="select24">
+						<li>
+							<input type="radio" value="12" id="12"
+								onChange={handleChange24} name="numberhours" />
+							<label for="12">12 hours</label>
+						</li>
+						<li>
+							<input type="radio" value="24" id="24"
+								onChange={handleChange24} name="numberhours"/>
+							<label for="24">24 hours</label>
+						</li>
+					</ul>
 				</form>
 			</div>
     </div>
