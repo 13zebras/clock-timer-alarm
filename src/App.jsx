@@ -1,96 +1,38 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-
-const startDate = new Date(2022, 1, 17, 17, 0, 0).getTime();
-//const startDate = theStartDate.getTime();
-console.log(startDate);
-// 2022-02-17 17:00:00 -- current start date
-// 2022-02-12 18:30:00 -- previous start date
-
+import dayjs from 'dayjs'
 
 function App() {
   
-	const [clockHours, setClockHours] = useState();
-	const [clockMins, setClockMins] = useState();
-	const [clockSecs, setClockSecs] = useState();
-	const [clockPeriod, setClockPeriod] = useState('AM');
 	const [twentyfour, setTwentyfour] = useState('24');
-	const [timeType, setTimeType] = useState('dy');
-	const [totalDaysS, setTotalDaysS] = useState();
-	const [totalHoursND, setTotalHoursND] = useState();
-	const [totalHoursS, setTotalHoursS] = useState();
-	const [totalMinutes, setTotalMinutes] = useState();
-	const [totalSeconds, setTotalSeconds] = useState();
-	const [totalMilliseconds, setTotalMilliseconds] = useState();
-	
-  // const [count, setCount] = useState(0);
-	
-	function updateTime() {
-		
-		// console.log('Count=' + count);
-		let currentDate = Date.now();
-		
-		// console.log('Time Now=' + currentDate);
-		let elapsedTime = currentDate - startDate;
-		// console.log('elapsedTime=' + elapsedTime);
-		let totDays = Math.floor(elapsedTime / (24 * 3600 * 1000));
-		
-		let totHoursNoDays = Math.floor(elapsedTime / (3600 * 1000));
-		let mHours = elapsedTime - (totDays * 24 * 3600 * 1000)
-		let totHours = Math.floor(mHours / (3600 * 1000));
-		let mMins = mHours - (totHours * 3600 * 1000);
-		// console.log('mMins=' + mMins);
-		let totMins = Math.floor(mMins / (60 * 1000));
-		let mSecs = mMins - (totMins * 60 * 1000);
-		// console.log('mSecs=' + mSecs);
-		let totSecs = Math.floor(mSecs / 1000);
-		let totMilliSecs = mSecs - (totSecs * 1000);
-		
-		// let tenthsSecond = Math.floor(totMilliSecs / 100);
-		// console.log(totSecs + '.' + totMilliSecs)
-		
-		// let decHours = Math.round(elapsedTime * 10 / 3600) / 10000;
-		totHours = ("0" + totHours).slice(-2);
-		totMins = ("0" + totMins).slice(-2);
-		totSecs = ("0" + totSecs).slice(-2);
-		totMilliSecs = (totMilliSecs + "00").slice(0, 3);
-		setTotalDaysS(totDays);
-		setTotalHoursS(totHours);
-		setTotalHoursND(totHoursNoDays);
-		setTotalMinutes(totMins);
-		setTotalSeconds(totSecs);
-		setTotalMilliseconds(totMilliSecs);
-		
-	}
+	const [showSeconds, setShowSeconds] = useState('nosecs');
+	const [showDate, setShowDate] = useState('nodate');
+	const [fullDate, setFullDate] = useState();
+	const [currentTime, setCurrentTime] = useState();
+	const [ampm, setAmpm] = useState();
+
+	// dayjs().format()
 
 	function updateClock() {
-		let date = new Date();
-		let hr = date.getHours();
-		let min = date.getMinutes();
-		let sec = date.getSeconds();
-
-		if ( twentyfour === '12' ) {
-			if (hr === 0) {
-				hr = 12;
+		let dateTime = dayjs();
+		setFullDate(dateTime.format('ddd DD MMM YYYY'));
+		setAmpm(dateTime.format('a'));
+		if ( twentyfour === '24' ) {
+			setAmpm("");
+			if ( showSeconds === 'secs' ) {
+				setCurrentTime(dateTime.format('HH:mm:ss'));
+			} else {
+				setCurrentTime(dateTime.format('HH:mm'));
 			}
-
-			if (hr > 12) {
-				hr = hr - 12;
-				setClockPeriod('PM');
+		} else {
+			if ( showSeconds === 'secs' ) {
+				setCurrentTime(dateTime.format('hh:mm:ss'));
+			} else {
+				setCurrentTime(dateTime.format('hh:mm'));
 			}
-
-			if (hr === 12) {
-				setClockPeriod('PM');
-			}
+			setAmpm(dateTime.format('a'));
 		}
 
-		hr = ("0" + hr).slice(-2);
-		min = ("0" + min).slice(-2);
-		sec = ("0" + sec).slice(-2);
-		
-		setClockHours(hr);
-		setClockMins(min);
-		setClockSecs(sec);
 		//console.log(`${hr}:${min}:${sec}${period}`);
 	}
 	
@@ -98,64 +40,26 @@ function App() {
 	useEffect(() => {
     const timer = setInterval(() => {
       updateClock();
-			updateTime();
     }, 500);
                // clearing interval
     return () => clearInterval(timer);
   });
 
 	//{clockHours}:{clockMins}:{clockSecs}
-	const renderClock = () => (
+	const renderClock12 = () => (
 		<div>
-			{clockHours}<span>:</span>{clockMins}<span>:</span>{clockSecs}<span className="clockPeriod">{clockPeriod}</span>
-			
+			{currentTime}<span className="ampm">{ampm}</span>
 		</div>
 	)
 
 	const renderClock24 = () => (
 		<div>
-			{clockHours}<span>:</span>{clockMins}<span>:</span>{clockSecs}
+			{currentTime}
 		</div>
 	)
-
-	const renderClockNS = () => (
-		<div>
-			{clockHours}<span>:</span>{clockMins}<span className="clockPeriod">{clockPeriod}</span>
-		</div>
-	)
-
-	const renderClockNS24 = () => (
-		<div>
-			{clockHours}<span>:</span>{clockMins}
-		</div>
-	)
-
-	const renderNShtml = () => (
-    <div>
-			{totalDaysS}<span>d</span> {totalHoursS}<span>h</span> {totalMinutes}<span>m</span>
-		</div>
-  );
-
-	const renderHRhtml = () => (
-    <div>
-			{totalHoursND}<span>h</span> {totalMinutes}<span>m</span> {totalSeconds}<span>s</span>
-		</div>
-  );
-
-	const renderDYhtml = () => (
-    <div>
-			{totalDaysS}<span>d</span> {totalHoursS}<span>h</span> {totalMinutes}<span>m</span> {totalSeconds}<span>s</span>
-		</div>
-  );
-
-	const renderMShtml = () => (
-    <div>
-			{totalDaysS}<span>d</span> {totalHoursS}<span>h</span> {totalMinutes}<span>m</span> {totalSeconds}<span>s</span> {totalMilliseconds}<span>ms</span>
-		</div>
-  );
 
 	const handleChange = (e) => {
-		setTimeType(e.target.value);
+		setShowSeconds(e.target.value);
 		//console.log(timeType);
 	}
 
@@ -164,50 +68,53 @@ function App() {
 		//console.log(twentyfour);
 	}
 
+	const handleChangeDate = (e) => {
+		setShowDate(e.target.value);
+		//console.log(twentyfour);
+	}
+
 	// const handleClick = (type) => {
 	// 	setTimeType(type); // state
 	// 	console.log(type);
 	// }
+
+	// {( twentyfour === '12' ) && renderClock12()}
+	// {( twentyfour === '24' ) && renderClock24()}
 		
 
   return (
     <div className="App">
-			<div className={`clock ${timeType} hours${twentyfour}`}>
-				{(timeType === 'ns' && twentyfour === '12' ) && renderClockNS()}
-				{(timeType !== 'ns' && twentyfour === '12' ) && renderClock()}
-				{(timeType === 'ns' && twentyfour === '24') && renderClockNS24()}
-				{(timeType !== 'ns' && twentyfour === '24' ) && renderClock24()}
+			<div className={`clock ${showSeconds} hours${twentyfour}`}>
+				{currentTime}<span className="ampm">{ampm}</span>
 			</div>
-			<div className={`time ${timeType}`}>
-				{(timeType === 'ns') && renderNShtml()}
-				{(timeType === 'hr') && renderHRhtml()}
-				{(timeType === 'dy') && renderDYhtml()}
-				{(timeType === 'ms') && renderMShtml()}
-				
+			<div className={`${showDate}`}>
+				{fullDate}
 			</div>
 			<div className="settings">
 				<form>
-					<ul className="time-type">
+				<ul className="show-date">
 						<li>
-							<input type="radio" value="ns" id="ns"
-								onChange={handleChange} name="display" />
-							<label for="ns">no secs</label>
+							<input type="radio" value="date" id="date"
+								onChange={handleChangeDate} name="displaydate" />
+							<label for="nosecs">date</label>
 						</li>
 						<li>
-							<input type="radio" value="dy" id="dy"
-								onChange={handleChange} name="display"/>
-							<label for="dy">days</label>
+							<input type="radio" value="nodate" id="nodate"
+								onChange={handleChangeDate} name="displaydate"/>
+							<label for="secs">no date</label>
 						</li>						
+					</ul>
+					<ul className="show-seconds">
 						<li>
-							<input type="radio" value="hr" id="hr"
-								onChange={handleChange} name="display"/>
-							<label for="hr">hours</label>
+							<input type="radio" value="nosecs" id="nosecs"
+								onChange={handleChange} name="displayseconds" />
+							<label for="nosecs">no seconds</label>
 						</li>
 						<li>
-							<input type="radio" value="ms" id="ms"
-								onChange={handleChange} name="display"/>
-							<label for="ms">ms</label>
-						</li>
+							<input type="radio" value="secs" id="secs"
+								onChange={handleChange} name="displayseconds"/>
+							<label for="secs">seconds</label>
+						</li>						
 					</ul>
 					<ul className="select24">
 						<li>

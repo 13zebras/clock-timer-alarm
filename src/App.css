@@ -48,6 +48,8 @@ body {
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	line-height: 90%;
+	align-items: baseline;
 }
 
 .clock div {
@@ -56,53 +58,50 @@ body {
 	line-height: 90%;
 }
 
-.clock {
-	font-size: max(2rem, calc(19.5vw + 1vh));
+.clock.secs.hours12 {
+	font-size: max(2rem, calc(18vw + 1vh));
+	/* transition: font-size 0s ease-in-out 0.5s; */
 }
 
-.clock.hours12 {
-	font-size: max(2rem, calc(17vw + 1vh));
+.clock.nosecs.hours12 {
+	font-size: max(2rem, calc(25vw + 1vh));
+	transition: font-size 0s ease-in-out 1s;
 }
 
-.clock.ns.hours12 {
-	font-size: max(3rem, calc(27vw + 1vh));
+.clock.secs.hours24 {
+	font-size: max(3rem, calc(21vw + 1vh));
+	/* transition: font-size 0s ease-in-out 1s; */
 }
 
-.clock.ns {
+.clock.nosecs.hours24 {
 	font-size: max(3rem, calc(30vw + 2vh));
+	transition: font-size 0s ease-in-out 1s;
 }
 
-.clock span {
-	padding: 0 0.4rem;
+.clock.hours24 .ampm {
+	font-size: 5px;
+	display: none;
 }
 
-.clock span.clockPeriod {
+.clock.hours12 .ampm {
 	font-size: calc(8vw + 1vh);
 	padding-left: 2vw;
 }
 
-.time {
+.nodate {
+	display: none;
+}
+
+.date {
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin-top: max(5rem, calc(1.3em + 3vw));
+	margin-top: 0.5em;
 	display: flex;
 	opacity: 1;
+	font-size: max(1rem, calc(6vw + 1vh));
+}
 	/* border: 1px solid yellow; */
-}
 
-.time {
-	font-size: max(1rem, calc(8vw + 2vh));
-}
-
-.time.ns {
-	font-size: max(1rem, calc(9.5vw + 2vh));
-}
-
-.time.ms {
-	font-size: max(1rem, calc(5vw + 1vh));
-	margin-top: max(5rem, calc(2em + 3vw));
-}
-
-.time {
+.date {
 	background: -webkit-linear-gradient(left, var(--g1) 20%, var(--g2) 35%, var(--g3) 50%, var(--g4) 65%, var(--g5) 80%);
 	background-size: 300% 200%;
 	animation: gradient-animation 20s ease infinite;
@@ -111,17 +110,8 @@ body {
 	-webkit-text-fill-color: transparent;
 }
 
-.time span {
-	font-size: calc(5vw + 1vh);
-	padding: 0;
-}
-
-.time.ms span {
-	font-size: calc(3vw + 1vh);
-}
-
 .settings {
-	margin-top: calc(2em + 4vw);
+	margin-top: calc(3em + 10vw);
 }
 
 .settings form {
@@ -130,12 +120,13 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
 	flex-wrap: wrap;
-	column-gap: min(4rem, 7vw);
+	column-gap: min(7rem, 7vw);
 	
 }
 
 .settings form .select24,
-.settings form .time-type {
+.settings form .show-seconds,
+.settings form .show-date  {
 	display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -143,8 +134,8 @@ body {
 	flex-wrap: nowrap;
 	padding: 0;
 }
-.settings form .time-type li {
-	margin-bottom: 5px;
+.settings form ul li {
+	margin-bottom: 8px;
 }
 
 .settings input {
@@ -157,7 +148,7 @@ body {
 .settings label {
 	color: #a8a9ad;
 	display: inline;
-	margin-left: 3px;
+	margin-left: 7px;
 	font-size: clamp(0.6rem, 2.3vw, 1.3rem);
 }
 

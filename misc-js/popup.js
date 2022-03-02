@@ -2,6 +2,6 @@ let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menub
 
 popupButton = document.getElementById('popupBtn');
 popupButton.onclick = () => {
-  window.open('https://clock-timer-alarm.vercel.app/', 'NoFap Count', params);
+  window.open('https://clock-timer-alarm.vercel.app/', 'NF Count', params);
 };
 
