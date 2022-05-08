@@ -50,54 +50,59 @@ body {
 	-webkit-text-fill-color: transparent;
 	line-height: 90%;
 	align-items: baseline;
+    font-size: max(2rem, 25vw);
+    transition: font-size 1.5s ease-in-out;
 }
 
 .clock div {
 	margin: 0;
 	padding: 0;
 	line-height: 90%;
+    
 }
 
-.clock.secs.hours12 {
-	font-size: max(2rem, calc(18vw + 1vh));
+.clock.secs {
+	font-size: max(2rem, 18vw);
 	/* transition: font-size 0s ease-in-out 0.5s; */
 }
 
-.clock.nosecs.hours12 {
-	font-size: max(2rem, calc(25vw + 1vh));
-	transition: font-size 0s ease-in-out 1s;
+.clock.nosecs {
+	transition: font-size 2s ease-in-out 1s;
 }
 
-.clock.secs.hours24 {
-	font-size: max(3rem, calc(21vw + 1vh));
-	/* transition: font-size 0s ease-in-out 1s; */
+/* .clock.secs.hours24 {
+	font-size: max(3rem, 21vw);
 }
 
 .clock.nosecs.hours24 {
-	font-size: max(3rem, calc(30vw + 2vh));
+	font-size: max(3rem, 30vw);
 	transition: font-size 0s ease-in-out 1s;
-}
+} */
 
-.clock.hours24 .ampm {
-	font-size: 5px;
+/* .clock.hours24 .ampm {
+	font-size: 1px;
+    padding-left: 0;
+    opacity: 0;
 	display: none;
-}
+} */
 
-.clock.hours12 .ampm {
-	font-size: calc(8vw + 1vh);
-	padding-left: 2vw;
+.clock .ampm {
+	font-size: 9vw;
+    padding-left: 2vw;
+    line-height: 9vw;
+    /* opacity: 1; */
+    /* transition: font-size padding-left 3s; */
 }
 
 .nodate {
-	display: none;
+	visibility: hidden;
 }
 
 .date {
 	font-family: Lato, Roboto, Helvetica, sans-serif;
-	margin-top: 0.5em;
-	display: flex;
+	margin-top: 0;
+	display: block;
 	opacity: 1;
-	font-size: max(1rem, calc(6vw + 1vh));
 }
 	/* border: 1px solid yellow; */
 
@@ -110,8 +115,20 @@ body {
 	-webkit-text-fill-color: transparent;
 }
 
+.weekday {
+    font-size: max(1.4rem, 13vw);
+    display: block;
+    margin-top: max(1rem, 3vw);
+}
+
+.fullDate {
+    font-size: max(1rem, 7vw);
+    display: block;
+    margin-top: 1.5em;
+}
+
 .settings {
-	margin-top: calc(3em + 10vw);
+	margin-top: calc(4em + 10vw);
 }
 
 .settings form {
@@ -124,7 +141,7 @@ body {
 	
 }
 
-.settings form .select24,
+/* .settings form .select24, */
 .settings form .show-seconds,
 .settings form .show-date  {
 	display: flex;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-const startDate = new Date(2022, 1, 17, 17, 0, 0).getTime();
+const startDate = new Date();
 //const startDate = theStartDate.getTime();
 console.log(startDate);
 // 2022-02-17 17:00:00 -- current start date

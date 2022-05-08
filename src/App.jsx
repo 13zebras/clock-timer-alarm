@@ -4,10 +4,11 @@ import dayjs from 'dayjs'
 
 function App() {
   
-	const [twentyfour, setTwentyfour] = useState('24');
+	const [twentyfour, setTwentyfour] = useState('12');
 	const [showSeconds, setShowSeconds] = useState('nosecs');
-	const [showDate, setShowDate] = useState('nodate');
+	const [showDate, setShowDate] = useState('date');
 	const [fullDate, setFullDate] = useState();
+    const [weekday, setWeekday] = useState();
 	const [currentTime, setCurrentTime] = useState();
 	const [ampm, setAmpm] = useState();
 
@@ -15,23 +16,30 @@ function App() {
 
 	function updateClock() {
 		let dateTime = dayjs();
-		setFullDate(dateTime.format('ddd DD MMM YYYY'));
+		setFullDate(dateTime.format('DD MMM YYYY'));
+        setWeekday(dateTime.format('dddd'))
 		setAmpm(dateTime.format('a'));
-		if ( twentyfour === '24' ) {
-			setAmpm("");
-			if ( showSeconds === 'secs' ) {
-				setCurrentTime(dateTime.format('HH:mm:ss'));
-			} else {
-				setCurrentTime(dateTime.format('HH:mm'));
-			}
-		} else {
-			if ( showSeconds === 'secs' ) {
-				setCurrentTime(dateTime.format('hh:mm:ss'));
-			} else {
-				setCurrentTime(dateTime.format('hh:mm'));
-			}
-			setAmpm(dateTime.format('a'));
-		}
+		if ( showSeconds === 'secs' ) {
+            setCurrentTime(dateTime.format('hh:mm:ss'));
+        } else {
+            setCurrentTime(dateTime.format('hh:mm'));
+        }
+        
+        // if ( twentyfour === '24' ) {
+		// 	setAmpm("");
+		// 	if ( showSeconds === 'secs' ) {
+		// 		setCurrentTime(dateTime.format('HH:mm:ss'));
+		// 	} else {
+		// 		setCurrentTime(dateTime.format('HH:mm'));
+		// 	}
+		// } else {
+		// 	if ( showSeconds === 'secs' ) {
+		// 		setCurrentTime(dateTime.format('hh:mm:ss'));
+		// 	} else {
+		// 		setCurrentTime(dateTime.format('hh:mm'));
+		// 	}
+		// 	setAmpm(dateTime.format('a'));
+		// }
 
 		//console.log(`${hr}:${min}:${sec}${period}`);
 	}
@@ -40,7 +48,7 @@ function App() {
 	useEffect(() => {
     const timer = setInterval(() => {
       updateClock();
-    }, 500);
+    }, 1000);
                // clearing interval
     return () => clearInterval(timer);
   });
@@ -63,10 +71,10 @@ function App() {
 		//console.log(timeType);
 	}
 
-	const handleChange24 = (e) => {
-		setTwentyfour(e.target.value);
-		//console.log(twentyfour);
-	}
+	// const handleChange24 = (e) => {
+	// 	setTwentyfour(e.target.value);
+	// 	//console.log(twentyfour);
+	// }
 
 	const handleChangeDate = (e) => {
 		setShowDate(e.target.value);
@@ -84,11 +92,13 @@ function App() {
 
   return (
     <div className="App">
-			<div className={`clock ${showSeconds} hours${twentyfour}`}>
+			{/* <div className={`clock ${showSeconds} hours${twentyfour}`}> */}
+            <div className={`clock ${showSeconds}`}>
 				{currentTime}<span className="ampm">{ampm}</span>
 			</div>
 			<div className={`${showDate}`}>
-				{fullDate}
+                <div className="weekday">{weekday}</div>
+				<div className="fullDate">{fullDate}</div>
 			</div>
 			<div className="settings">
 				<form>
@@ -116,10 +126,10 @@ function App() {
 							<label for="secs">seconds</label>
 						</li>						
 					</ul>
-					<ul className="select24">
+					{/* <ul className="select24">
 						<li>
 							<input type="radio" value="12" id="12"
-								onChange={handleChange24} name="numberhours" />
+								onChange={handleChange24} name="numberhours"/>
 							<label for="12">12 hours</label>
 						</li>
 						<li>
@@ -127,7 +137,7 @@ function App() {
 								onChange={handleChange24} name="numberhours"/>
 							<label for="24">24 hours</label>
 						</li>
-					</ul>
+					</ul> */}
 				</form>
 			</div>
     </div>
